@@ -1,0 +1,3 @@
+READ_API_KEY=replace-with-a-distinct-read-key-of-at-least-32-characters
+PUSH_API_KEY=replace-with-a-distinct-push-key-of-at-least-32-characters
+INTERNAL_API_KEY=replace-with-a-distinct-internal-key-of-at-least-32-characters

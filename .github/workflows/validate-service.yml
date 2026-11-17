@@ -1,0 +1,21 @@
+name: Validate service
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '11.0.x'
+      - run: dotnet test --project test/Soenneker.Cloudflare.NuGet.Tests -- --treenode-filter "/*/*/CloudflareNuGetTests/*"
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+      - run: npm ci && npm run typecheck && npm test && npm run test:smoke
+        working-directory: worker
+      - run: docker build -t soenneker/cloudflare-nuget:test .

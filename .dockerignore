@@ -1,0 +1,6 @@
+**/bin
+**/obj
+.git
+worker
+test
+**/*.log
