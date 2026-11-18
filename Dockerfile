@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:11.0 AS build
+ENV DOTNET_NOLOGO=true DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE=true DOTNET_GENERATE_ASPNET_CERTIFICATE=false
 WORKDIR /src
 COPY src/Soenneker.Cloudflare.NuGet/Soenneker.Cloudflare.NuGet.csproj ./
 RUN dotnet restore
